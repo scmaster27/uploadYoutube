@@ -1,0 +1,32 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.4.RELEASE'
+	id 'java'
+	id 'war'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.google.api.services.samples.youtube'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	
+	compile group: 'com.google.apis', name: 'google-api-services-youtube', version:'v3-rev182-1.22.0'
+    compile group: 'com.google.apis', name: 'google-api-services-youtubeAnalytics', version:'v1-rev63-1.22.0'
+    compile group: 'com.google.apis', name: 'google-api-services-youtubereporting', version:'v1-rev10-1.22.0'
+	compile group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version:'1.9.4'
+	compile group: 'com.google.http-client', name: 'google-http-client-jackson2', version:'1.20.0'
+    compile("com.google.oauth-client:google-oauth-client-jetty:1.24.1") {
+  		exclude group: 'org.mortbay.jetty', module: 'servlet-api'
+	}
+	compile group: 'com.google.collections', name: 'google-collections', version:'1.0'
+
+}
